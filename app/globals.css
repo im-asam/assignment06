@@ -231,6 +231,36 @@ a {
     transform: translateY(-50%);
   }
 
+  .mobile-nav {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 65px;
+  left: 0;
+  width: 100%;
+  padding: 12px 24px;
+  background: #0c0d10;
+  border-top: 1px solid #1c1f26;
+  border-bottom: 1px solid #1c1f26;
+  z-index: 100;
+}
+
+.mobile-nav-link {
+  padding: 12px 16px;
+  border-radius: 8px;
+
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #9ca3af;
+}
+
+.mobile-nav-link.active {
+  background: #1a2312;
+  color: #c2f800;
+  font-weight: 600;
+}
+
   .navbar-logo {
     width: 28px;
     height: 28px;
