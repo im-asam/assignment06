@@ -25,24 +25,32 @@ a {
 ========================= */
 
 .navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 81px;
-  background: rgba(12, 13, 16, 0.95);
-  border: 1px solid #1c1f26;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  height: 80px;
+
+  z-index: 1000;
+
+  background: #0f1115;
+  border-bottom: 1px solid #232834;
 }
 
 .navbar-inner {
   position: relative;
   width: 100%;
   height: 100%;
+
   padding: 0 24px;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  box-sizing: border-box;
 }
+
 
 /* =========================
    Brand
@@ -52,13 +60,13 @@ a {
   display: flex;
   align-items: center;
   gap: 10px;
-
   flex-shrink: 0;
 }
 
 .navbar-logo {
   width: 28px;
   height: 28px;
+
   display: block;
   object-fit: contain;
 }
@@ -68,8 +76,10 @@ a {
   font-size: 18px;
   font-weight: 900;
   line-height: 28px;
+
   color: #ffffff;
 }
+
 
 /* =========================
    Desktop Navigation
@@ -77,8 +87,10 @@ a {
 
 .navbar-nav {
   position: absolute;
+
   left: 50%;
   top: 50%;
+
   transform: translate(-50%, -50%);
 
   display: flex;
@@ -88,6 +100,7 @@ a {
 
 .nav-link {
   height: 28px;
+
   padding: 6px 16px;
 
   display: flex;
@@ -102,6 +115,7 @@ a {
   line-height: 16px;
 
   color: #9ca3af;
+
   white-space: nowrap;
 }
 
@@ -110,6 +124,7 @@ a {
   color: #c2f800;
   font-weight: 600;
 }
+
 
 /* =========================
    Status
@@ -172,6 +187,7 @@ a {
   color: #d1d5db;
 }
 
+
 /* =========================
    Mobile Menu Button
 ========================= */
@@ -205,7 +221,7 @@ a {
    Responsive
 ========================= */
 
-@media (max-width: 768px) {
+@media (max-width: 1100px) {
   .navbar {
     height: 65px;
   }
@@ -224,7 +240,6 @@ a {
 
   .mobile-menu-button {
     display: flex;
-
     position: absolute;
     left: 24px;
     top: 50%;
@@ -232,34 +247,34 @@ a {
   }
 
   .mobile-nav {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: 65px;
-  left: 0;
-  width: 100%;
-  padding: 12px 24px;
-  background: #0c0d10;
-  border-top: 1px solid #1c1f26;
-  border-bottom: 1px solid #1c1f26;
-  z-index: 100;
-}
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 65px;
+    left: 0;
+    width: 100%;
+    padding: 12px 24px;
+    background: #0c0d10;
+    border-top: 1px solid #1c1f26;
+    border-bottom: 1px solid #1c1f26;
+    z-index: 100;
+  }
 
-.mobile-nav-link {
-  padding: 12px 16px;
-  border-radius: 8px;
+  .mobile-nav-link {
+    padding: 12px 16px;
+    border-radius: 8px;
 
-  font-family: "Inter", sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  color: #9ca3af;
-}
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #9ca3af;
+  }
 
-.mobile-nav-link.active {
-  background: #1a2312;
-  color: #c2f800;
-  font-weight: 600;
-}
+  .mobile-nav-link.active {
+    background: #1a2312;
+    color: #c2f800;
+    font-weight: 600;
+  }
 
   .navbar-logo {
     width: 28px;
@@ -282,11 +297,12 @@ a {
 .hero-section {
   width: 100%;
   padding: 48px 24px;
+  padding-top: 128px;
 }
 
 .hero-banner {
   width: 100%;
-  max-width: 1232px;
+  /* max-width: 1232px; */
   height: 448px;
   margin: 0 auto;
 
@@ -395,23 +411,79 @@ a {
   object-fit: contain;
 }
 
+
+/* =========================
+   Hero - Tablet
+========================= */
+
+@media (max-width: 1100px) and (min-width: 601px) {
+  .hero-section {
+    padding: 32px 24px;
+    padding-top: 97px;
+  }
+
+  .hero-banner {
+    height: 360px;
+    padding: 32px;
+
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .hero-content {
+    width: 55%;
+    height: auto;
+  }
+
+  .hero-title {
+    width: 100%;
+    height: auto;
+
+    font-size: 42px;
+    line-height: 46px;
+  }
+
+  .hero-description {
+    width: 100%;
+    height: auto;
+
+    font-size: 14px;
+    line-height: 21px;
+  }
+
+  .hero-image-wrapper {
+    width: 40%;
+    height: 260px;
+  }
+
+  .hero-image-wrapper img {
+    width: 260px;
+    height: 260px;
+  }
+}
+
+
 /* =========================
    Hero - Mobile
 ========================= */
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .hero-section {
     padding: 32px 24px;
+    padding-top: 97px;
   }
 
   .hero-banner {
     width: 100%;
     height: auto;
-    min-height: 0;
+
     padding: 40px 24px;
+
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
+
     gap: 28px;
   }
 
@@ -427,6 +499,7 @@ a {
   .hero-title {
     width: 100%;
     height: auto;
+
     margin: 18px 0 0;
     padding-top: 0;
 
@@ -438,6 +511,7 @@ a {
   .hero-description {
     width: 100%;
     height: auto;
+
     margin: 18px 0 0;
 
     font-size: 14px;
@@ -447,6 +521,7 @@ a {
   .hero-button {
     width: 179px;
     height: 40px;
+
     margin-top: 22px;
   }
 
@@ -567,4 +642,367 @@ a {
   font-size: 12px;
   line-height: 16px;
   color: #9ca3af;
+}
+
+/* =========================
+   Exercise Details
+========================= */
+
+.exercise-page {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+
+  padding: 128px 24px 48px;
+
+  display: grid;
+  grid-template-columns: 588px 588px;
+  gap: 56px;
+
+  align-items: start;
+}
+
+/* =========================
+   Exercise Image
+========================= */
+
+.exercise-image {
+  position: relative;
+
+  width: 588px;
+  height: 735px;
+
+  overflow: hidden;
+
+  background: #171a21;
+  border: 1px solid #232834;
+  border-radius: 16px;
+
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28);
+}
+
+.exercise-image img {
+  object-fit: cover;
+}
+
+/* =========================
+   Exercise Info
+========================= */
+
+.exercise-info {
+  width: 588px;
+  min-height: 798px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================
+   Heading
+========================= */
+
+.exercise-heading {
+  width: 588px;
+}
+
+.exercise-heading h1 {
+  width: 588px;
+
+  margin: 0;
+  padding: 0 0 12px;
+
+  font-family: "Oswald", sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 40px;
+  letter-spacing: -0.9px;
+
+  color: #ffffff;
+}
+
+.exercise-description {
+  width: 576px;
+
+  margin: 0;
+  padding: 0 0 20px;
+
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+
+  color: #9ca3af;
+}
+
+/* =========================
+   Categories
+========================= */
+
+.exercise-tags {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding-bottom: 28px;
+}
+
+.exercise-tags span {
+  min-height: 24px;
+
+  padding: 4px 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 9999px;
+
+  background: #ccff00;
+
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+
+  color: #0f1115;
+}
+
+/* =========================
+   Stats
+========================= */
+
+.exercise-stats {
+  width: 588px;
+
+  overflow: hidden;
+
+  margin-bottom: 32px;
+
+  background: #151922;
+  border: 1px solid #232834;
+  border-radius: 16px;
+}
+
+.stat-row {
+  width: 100%;
+  min-height: 52px;
+
+  padding: 14px 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-bottom: 1px solid #1e2330;
+}
+
+.stat-row:last-child {
+  border-bottom: none;
+}
+
+.stat-row span {
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0.6px;
+
+  color: #9ca3af;
+}
+
+.stat-row strong {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+
+  color: #e5e7eb;
+  text-align: right;
+}
+
+/* =========================
+   Instructions
+========================= */
+
+.instructions {
+  width: 588px;
+
+  padding-bottom: 36px;
+}
+
+.instructions h2 {
+  margin: 0 0 16px;
+
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 24px;
+  letter-spacing: 0.8px;
+
+  color: #ffffff;
+}
+
+.instructions ol {
+  margin: 0;
+  padding-left: 0;
+  list-style-position: inside;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.instructions li {
+  padding-left: 0;
+
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22.8px;
+  color: #d1d5db;
+}
+
+/* =========================
+   Buttons
+========================= */
+
+.exercise-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.exercise-actions button {
+  height: 56px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  padding: 12px 24px;
+
+  border-radius: 12px;
+
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.plan-button {
+  width: auto;
+
+  border: none;
+
+  background: #ccff00;
+  color: #0f1115;
+
+  font-weight: 600;
+
+  box-shadow: 0 6px 18px rgba(204, 255, 0, 0.16);
+}
+
+.plan-button svg {
+  color: #0f1115;
+}
+
+.save-button {
+  width: auto;
+
+  border: 1px solid #374151;
+
+  background: transparent;
+  color: #e5e7eb;
+
+  font-weight: 500;
+}
+
+.save-button svg {
+  color: #e5e7eb;
+}
+
+/* =========================
+   Exercise Details Mobile
+========================= */
+
+@media (max-width: 1100px) {
+  .exercise-page {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .exercise-image,
+  .exercise-info,
+  .exercise-heading,
+  .exercise-heading h1,
+  .exercise-stats,
+  .instructions {
+    width: 100%;
+  }
+
+  .exercise-image {
+    height: min(735px, 80vw);
+  }
+
+  .exercise-info {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .exercise-page {
+    padding: 97px 24px 48px;
+    gap: 32px;
+  }
+
+  .exercise-image {
+    height: 80vw;
+    min-height: 320px;
+    max-height: 600px;
+  }
+
+  .exercise-heading h1 {
+    font-size: 30px;
+    line-height: 34px;
+    letter-spacing: -0.7px;
+  }
+
+  .exercise-description {
+    width: 100%;
+    font-size: 14px;
+    line-height: 21px;
+  }
+
+  .exercise-stats {
+    border-radius: 14px;
+  }
+
+  .stat-row {
+    padding: 13px 18px;
+  }
+
+  .exercise-actions {
+    flex-wrap: wrap;
+  }
+
+  .plan-button,
+  .save-button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1100px) {
+  .workout-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .workout-grid {
+    grid-template-columns: 1fr;
+  }
 }
