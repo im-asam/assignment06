@@ -151,15 +151,14 @@ export default function MyPlanPage() {
             {sortedList.map((workout) => (
               <article
                 key={workout.id}
-                className={`plan-workout-card ${
-                  workout.isDone ? "done" : ""
-                }`}
+                className={`plan-workout-card ${workout.isDone ? "done" : ""
+                  }`}
               >
                 {/* Image */}
 
                 <div className="plan-workout-image">
                   <img
-                    src={`/assets/img${workout.id}.jpg`}
+                    src={workout.image}
                     alt={workout.name}
                   />
                 </div>
