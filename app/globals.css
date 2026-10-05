@@ -3,6 +3,12 @@
 * {
   box-sizing: border-box;
 }
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
 
 html {
   scroll-behavior: smooth;
@@ -221,7 +227,7 @@ a {
    Responsive
 ========================= */
 
-@media (max-width: 1100px) {
+@media (max-width: 767px) {
   .navbar {
     height: 65px;
   }
@@ -542,7 +548,7 @@ a {
 ========================= */
 
 .library-section {
-  padding: 0 24px 48px;
+  padding: 0 24px 64px;
 }
 
 .library-heading {
@@ -869,21 +875,21 @@ a {
 .exercise-actions {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
 }
 
 .exercise-actions button {
-  height: 56px;
+  height: 48px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  gap: 8px;
+  gap: 6px;
 
-  padding: 12px 24px;
+  padding: 10px 18px;
 
-  border-radius: 12px;
+  border-radius: 10px;
 
   font-family: "Inter", sans-serif;
   font-size: 14px;
@@ -907,6 +913,8 @@ a {
 }
 
 .plan-button svg {
+  width: 16px;
+  height: 16px;
   color: #0f1115;
 }
 
@@ -922,11 +930,14 @@ a {
 }
 
 .save-button svg {
+  width: 16px;
+  height: 16px;
   color: #e5e7eb;
 }
 
+
 /* =========================
-   Exercise Details Mobile
+   Exercise Details Responsive
 ========================= */
 
 @media (max-width: 1100px) {
@@ -951,18 +962,30 @@ a {
   .exercise-info {
     min-height: auto;
   }
+
+  .workout-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 768px) {
   .exercise-page {
+    width: 100%;
+    box-sizing: border-box;
     padding: 97px 24px 48px;
     gap: 32px;
   }
 
   .exercise-image {
+    width: 100%;
     height: 80vw;
     min-height: 320px;
     max-height: 600px;
+    min-width: 0;
+  }
+
+  .exercise-image img {
+    max-width: 100%;
   }
 
   .exercise-heading h1 {
@@ -978,6 +1001,7 @@ a {
   }
 
   .exercise-stats {
+    width: 100%;
     border-radius: 14px;
   }
 
@@ -986,23 +1010,792 @@ a {
   }
 
   .exercise-actions {
-    flex-wrap: wrap;
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 10px;
   }
 
+  .plan-button,
+  .save-button {
+    width: auto;
+  }
+
+  .workout-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================
+   Small Mobile
+========================= */
+
+@media (max-width: 400px) {
+  .exercise-page {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .exercise-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .exercise-actions button,
   .plan-button,
   .save-button {
     width: 100%;
   }
 }
 
-@media (max-width: 1100px) {
-  .workout-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+/* =========================
+   My Plan
+========================= */
+
+.my-plan-page {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 128px 40px 80px;
+}
+
+.my-plan-header {
+  margin-bottom: 28px;
+}
+
+.my-plan-header h1 {
+  margin: 0 0 10px;
+  font-family: "Inter", sans-serif;
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.1;
+  color: #ffffff;
+}
+
+.my-plan-header p {
+  margin: 0;
+  color: #8f98a8;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+
+/* =========================
+   Stats
+========================= */
+
+.plan-stats {
+  width: 100%;
+  height: 122px;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  margin-bottom: 20px;
+
+  background: #151922;
+  border: 1px solid #232834;
+  border-radius: 12px;
+
+  overflow: hidden;
+}
+
+.plan-stat {
+  height: 100%;
+
+  padding: 24px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  border-right: 1px solid #232834;
+}
+
+.plan-stat:last-child {
+  border-right: none;
+}
+
+.plan-stat span {
+  margin-bottom: 4px;
+
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  line-height: 16px;
+
+  color: #9ca3af;
+}
+
+.plan-stat strong {
+  font-family: "Oswald", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 36px;
+
+  color: #ffffff;
+}
+
+.plan-stat:first-child strong {
+  color: #ccff00;
+}
+
+/* =========================
+   Controls
+========================= */
+
+.plan-controls {
+  width: 100%;
+
+  min-height: 40px;
+
+  margin-bottom: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Tabs */
+
+.plan-tabs {
+  display: flex;
+  align-items: center;
+
+  padding: 3px;
+
+  background: #151922;
+  border: 1px solid #232834;
+  border-radius: 9px;
+}
+
+.plan-tabs button {
+  height: 30px;
+
+  padding: 0 16px;
+
+  border: none;
+  border-radius: 6px;
+
+  background: transparent;
+
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+
+  color: #9ca3af;
+
+  cursor: pointer;
+}
+
+.plan-tabs button.active {
+  background: #202633;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Sort */
+
+.sort-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sort-control span {
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+
+  color: #9ca3af;
+}
+
+.sort-control select {
+  height: 34px;
+
+  min-width: 82px;
+
+  padding: 0 30px 0 12px;
+
+  border: 1px solid #2b3140;
+  border-radius: 8px;
+
+  background: #151922;
+  color: #ffffff;
+
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+
+  cursor: pointer;
+  outline: none;
+}
+
+.sort-control select:focus {
+  border-color: #ccff00;
+}
+
+.sort-control option {
+  background: #151922;
+  color: #ffffff;
+}
+
+/* =========================
+   Workout List
+========================= */
+
+.plan-list {
+  width: 100%;
+}
+
+.plan-workout-list {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 16px;
+}
+
+/* =========================
+   Workout Card
+========================= */
+
+.plan-workout-card {
+  width: 100%;
+  height: 116px;
+
+  display: flex;
+  align-items: center;
+
+  overflow: hidden;
+
+  background: #151922;
+  border: 1px solid #232834;
+  border-radius: 14px;
+}
+
+.plan-workout-card.done {
+  opacity: 0.55;
+}
+
+/* =========================
+   Thumbnail
+========================= */
+
+.plan-workout-image {
+  width: 145px;
+  min-width: 145px;
+  height: 82px;
+
+  margin-left: 16px;
+
+  overflow: hidden;
+
+  border-radius: 7px;
+
+  background: #000000;
+}
+
+.plan-workout-image img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+}
+
+/* =========================
+   Content
+========================= */
+
+.plan-workout-content {
+  min-width: 0;
+
+  flex: 1;
+
+  padding: 0 18px;
+}
+
+.plan-workout-content h3 {
+  margin: 0;
+
+  font-family: "Oswald", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 24px;
+
+  color: #ffffff;
+}
+
+.plan-equipment {
+  margin: 1px 0 5px;
+
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  line-height: 16px;
+
+  color: #9ca3af;
+}
+
+/* =========================
+   Meta
+========================= */
+
+.plan-workout-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  line-height: 16px;
+
+  color: #c2c8d0;
+}
+
+.plan-workout-meta>span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.meta-icon {
+  color: #ccff00;
+  font-size: 12px;
+}
+
+/* =========================
+   Actions
+========================= */
+
+.plan-card-actions {
+  flex-shrink: 0;
+
+  padding: 0 18px 0 8px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.plan-card-actions a,
+.plan-card-actions button {
+  height: 34px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 18px;
+
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* View Details */
+
+.view-details-button {
+  min-width: 108px;
+
+  padding: 0 15px;
+
+  border: 1px solid #374151;
+
+  background: transparent;
+  color: #e5e7eb;
+}
+
+.view-details-button:hover {
+  border-color: #ccff00;
+}
+
+/* Mark as Done */
+
+.done-button {
+  min-width: 132px;
+
+  padding: 0 15px;
+
+  gap: 6px;
+
+  border: none;
+
+  background: #ccff00;
+  color: #0f1115;
+}
+
+.done-button:hover {
+  background: #d6ff33;
+}
+
+/* Remove */
+
+.remove-button {
+  width: 34px;
+  min-width: 34px;
+
+  padding: 0;
+
+  border: none;
+
+  background: transparent;
+  color: #6f7785;
+
+  font-size: 22px !important;
+  font-weight: 400 !important;
+}
+
+.remove-button:hover {
+  color: #ffffff;
+}
+
+/* =========================
+   Empty State
+========================= */
+
+.plan-empty {
+  width: 100%;
+  min-height: 260px;
+
+  padding: 40px 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px dashed #252b36;
+  border-radius: 10px;
+
+  text-align: center;
+}
+
+.plan-empty-content h2 {
+  margin: 0 0 6px;
+
+  font-family: "Oswald", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 28px;
+
+  color: #ffffff;
+}
+
+.plan-empty-content p {
+  margin: 0 0 18px;
+
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  line-height: 16px;
+
+  color: #8f96a3;
+}
+
+.plan-empty-button {
+  min-height: 32px;
+
+  padding: 0 18px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 999px;
+
+  background: #ccff00;
+
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+
+  color: #0f1115;
+  text-decoration: none;
+
+  box-shadow: 0 5px 16px rgba(204, 255, 0, 0.14);
+}
+
+/* =========================
+   Tablet
+========================= */
+
+@media (max-width: 900px) {
+  .my-plan-page {
+    padding: 40px 24px 56px;
+  }
+
+  .plan-workout-card {
+    height: 112px;
+  }
+
+  .plan-workout-image {
+    width: 130px;
+    min-width: 130px;
+    height: 76px;
+  }
+
+  .plan-workout-content {
+    padding: 0 14px;
+  }
+
+  .plan-card-actions {
+    padding-right: 12px;
+    gap: 6px;
+  }
+
+  .view-details-button {
+    min-width: 96px;
+  }
+
+  .done-button {
+    min-width: 118px;
   }
 }
 
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width: 768px) {
+  .my-plan-page {
+    padding: 113px 24px 60px;
+  }
+
+  .my-plan-header {
+    margin-bottom: 22px;
+  }
+
+  .my-plan-header h1 {
+    font-size: 28px;
+    line-height: 34px;
+  }
+
+  .my-plan-header p {
+    font-size: 13px;
+    line-height: 19px;
+  }
+
+  /* Keep stats horizontal */
+
+  .plan-stats {
+    height: 100px;
+  }
+
+  .plan-stat {
+    padding: 14px 12px;
+  }
+
+  .plan-stat span {
+    font-size: 10px;
+  }
+
+  .plan-stat strong {
+    font-size: 26px;
+    line-height: 30px;
+  }
+
+  /* Toolbar */
+
+  .plan-controls {
+    min-height: auto;
+
+    align-items: flex-start;
+
+    gap: 12px;
+
+    flex-direction: column;
+  }
+
+  .plan-tabs {
+    width: auto;
+  }
+
+  .sort-control {
+    width: 100%;
+
+    justify-content: space-between;
+  }
+
+  /* Card becomes stacked */
+
+  .plan-workout-card {
+    height: auto;
+
+    align-items: stretch;
+
+    flex-direction: column;
+  }
+
+  .plan-workout-image {
+    width: 100%;
+    min-width: 100%;
+    height: 200px;
+
+    margin-left: 0;
+
+    border-radius: 0;
+  }
+
+  .plan-workout-content {
+    padding: 16px;
+  }
+
+  .plan-workout-content h3 {
+    font-size: 20px;
+    line-height: 26px;
+  }
+
+  .plan-equipment {
+    margin-top: 2px;
+    margin-bottom: 8px;
+  }
+
+  .plan-workout-meta {
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .plan-card-actions {
+    padding: 0 16px 16px;
+
+    flex-wrap: wrap;
+  }
+
+  .view-details-button,
+  .done-button {
+    flex: 1;
+  }
+
+  .remove-button {
+    flex: 0 0 34px;
+  }
+}
+
+/* =========================
+   Small Mobile
+========================= */
+
+@media (max-width: 480px) {
+  .plan-stats {
+    height: 92px;
+  }
+
+  .plan-stat {
+    padding: 10px 8px;
+  }
+
+  .plan-stat span {
+    font-size: 9px;
+  }
+
+  .plan-stat strong {
+    font-size: 23px;
+    line-height: 27px;
+  }
+
+  .plan-tabs button {
+    padding: 0 13px;
+  }
+
+  .sort-control select {
+    min-width: 110px;
+  }
+
+  .plan-workout-image {
+    height: 190px;
+  }
+
+  .plan-card-actions {
+    gap: 7px;
+  }
+
+  .view-details-button,
+  .done-button {
+    min-width: 0;
+    padding: 0 10px;
+  }
+}
+
+/* =========================
+   Universal Footer
+========================= */
+
+.site-footer {
+  width: 100%;
+  min-height: 101px;
+  padding: 0 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-top: 1px solid #1A1D24;
+  background: #090A0D;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+
+.footer-logo span {
+  color: #f5f7fa;
+  font-family: "Oswald", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 0.7px;
+}
+
+.footer-logo strong {
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.site-footer p {
+  color: #6B7280;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 18px;
+}
+
 @media (max-width: 600px) {
-  .workout-grid {
-    grid-template-columns: 1fr;
+  .site-footer {
+    min-height: auto;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .footer-logo {
+    gap: 6px;
+  }
+
+  .footer-logo img {
+    width: 22px;
+    height: 22px;
+  }
+
+  .footer-logo span {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .site-footer p {
+    max-width: 100%;
+    margin: 0;
+    font-size: 10px;
+    line-height: 14px;
+    text-align: left;
   }
 }

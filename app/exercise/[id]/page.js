@@ -1,17 +1,65 @@
+"use client";
+
+import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
-import exercises from "../../../data/exercises";
+import { usePlan } from "@/context/PlanContext";
+import { getWorkoutById } from "@/utils/api";
 
-export default async function ExercisePage({ params }) {
-  const { id } = await params;
+export default function ExercisePage() {
+  const { id } = useParams();
+  const { plan, addToPlan, addToSaved } = usePlan();
 
-  const exercise = exercises.find(
-    (item) => item.id === Number(id)
-  );
+  const [exercise, setExercise] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadExercise() {
+      try {
+        const data = await getWorkoutById(id);
+
+        setExercise({
+          ...data,
+          categories: data.muscleGroups,
+          calories: data.caloriesBurned,
+        });
+      } catch (error) {
+        console.error("Failed to load workout:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadExercise();
+  }, [id]);
+
+  if (loading) {
+    return (
+      <>
+        <Navbar />
+        <main className="exercise-page">
+          <h1>Loading workout...</h1>
+        </main>
+      </>
+    );
+  }
 
   if (!exercise) {
-    return <h1>Exercise not found</h1>;
+    return (
+      <>
+        <Navbar />
+        <main className="exercise-page">
+          <h1>Exercise not found</h1>
+        </main>
+      </>
+    );
   }
+
+  const isPlanFull = plan.length >= 5;
+  const isAlreadyInPlan = plan.some(
+    (item) => item.id === exercise.id
+  );
 
   return (
     <>
@@ -21,7 +69,7 @@ export default async function ExercisePage({ params }) {
         {/* Image */}
         <div className="exercise-image">
           <Image
-            src={`/assets/img${exercise.id}.jpg`}
+            src={exercise.image}
             alt={`${exercise.name} demonstration`}
             fill
             sizes="588px"
@@ -31,7 +79,6 @@ export default async function ExercisePage({ params }) {
 
         {/* Details */}
         <div className="exercise-info">
-
           <div className="exercise-heading">
             <h1>{exercise.name}</h1>
 
@@ -48,7 +95,6 @@ export default async function ExercisePage({ params }) {
 
           {/* Stats */}
           <div className="exercise-stats">
-
             <div className="stat-row">
               <span>EQUIPMENT</span>
               <strong>{exercise.equipment}</strong>
@@ -83,7 +129,6 @@ export default async function ExercisePage({ params }) {
               <span>REPS</span>
               <strong>{exercise.reps}</strong>
             </div>
-
           </div>
 
           {/* Instructions */}
@@ -99,8 +144,11 @@ export default async function ExercisePage({ params }) {
 
           {/* Actions */}
           <div className="exercise-actions">
-
-            <button className="plan-button">
+            <button
+              className="plan-button"
+              onClick={() => addToPlan(exercise)}
+              disabled={isPlanFull || isAlreadyInPlan}
+            >
               <svg
                 width="16"
                 height="16"
@@ -126,10 +174,19 @@ export default async function ExercisePage({ params }) {
                 />
               </svg>
 
-              <span>Add to today's plan</span>
+              <span>
+                {isAlreadyInPlan
+                  ? "Already in plan"
+                  : isPlanFull
+                    ? "Plan full"
+                    : "Add to today's plan"}
+              </span>
             </button>
 
-            <button className="save-button">
+            <button
+              className="save-button"
+              onClick={() => addToSaved(exercise)}
+            >
               <svg
                 width="16"
                 height="16"
@@ -147,7 +204,6 @@ export default async function ExercisePage({ params }) {
 
               <span>Save for later</span>
             </button>
-
           </div>
         </div>
       </main>
